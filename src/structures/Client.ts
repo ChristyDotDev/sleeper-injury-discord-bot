@@ -9,7 +9,6 @@ import fs from "fs";
 import path from "path";
 import { CommandType } from "../typings/Command";
 import { RegisterCommandsOptions } from "../typings/client";
-import { ClientConfig } from "../typings/Config";
 import { Event } from "./Event";
 import { Feature } from "./Feature";
 
@@ -17,7 +16,6 @@ type BotOptions = Omit<ClientOptions, "intents">;
 
 export class Bot extends Client {
   commands: Collection<string, CommandType> = new Collection();
-  config: ClientConfig = require("../../config.json");
 
   constructor(options: BotOptions = {}) {
     super({
@@ -35,7 +33,7 @@ export class Bot extends Client {
   }
 
   async registerCommands({ commands, guildId }: RegisterCommandsOptions) {
-    if (!this.config.deploySlashGlobally) {
+    if (!process.env.deploySlashGlobally) {
       const guild = this.guilds.cache.get(guildId);
       guild?.commands.set(commands);
       console.log(`Registering commands to ${guild?.name}`);
@@ -67,7 +65,7 @@ export class Bot extends Client {
     this.on("ready", () => {
       this.registerCommands({
         commands: slashCommands,
-        guildId: this.config.guildId,
+        guildId: process.env.guildId,
       });
     });
 
