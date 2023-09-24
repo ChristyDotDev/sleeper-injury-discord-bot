@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "strict": false,
     "lib": ["ESNext"],
     "module": "commonjs",
     "moduleResolution": "node",
@@ -16,5 +17,13 @@
     "importHelpers": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": [
+    "node_modules",
+    "node_modules/*",
+    "./node_modules",
+    "./node_modules/*",
+    "./node_modules/@types/node/index.d.ts",
+    "node_modules/discord.js/*",
+    "**/*.spec.ts"
+  ]
 }
