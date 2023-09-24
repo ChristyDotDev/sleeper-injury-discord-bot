@@ -12,7 +12,8 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^14.5.0",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "sleeper-api-client": "^0.1.2"
   },
   "devDependencies": {
     "@types/ms": "^0.7.31",
